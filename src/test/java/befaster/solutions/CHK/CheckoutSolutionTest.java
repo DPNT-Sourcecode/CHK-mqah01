@@ -92,8 +92,18 @@ public class CheckoutSolutionTest {
 	
 	
 	@Test
-	public void offer() {
+	public void whenCheckoutQuantityIsBelowOfferQuantityThenDiscountIsZero() {
+		Offer offer = Offer.create(Collections.singletonMap("A", 50), "A", 3, 130);
 		
+		assertThat(offer.discount(2), is(0));
 	}
 	
+	
+	@Test
+	public void whenCheckoutQuantityIsExactlyDoubleTheOfferQuantityThenDiscountIsDoubled() {
+		Offer offer = Offer.create(Collections.singletonMap("A", 50), "A", 3, 130);
+		
+		assertThat(offer.discount(6), is(20 * 2));
+	}
 }
+

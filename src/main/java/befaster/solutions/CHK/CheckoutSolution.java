@@ -36,7 +36,7 @@ public class CheckoutSolution {
 		
 		public static Offer create(Map<String, Integer> stockPrice, String sku, int quantity, int price)
 		{
-			return new Offer(quantity, quantity & stockPrice.get(sku) - price);
+			return new Offer(quantity, quantity * stockPrice.get(sku) - price);
 		}
 		
 		public int discount(int quantity)
@@ -107,3 +107,4 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
