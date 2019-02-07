@@ -4,7 +4,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -21,16 +20,17 @@ public class CheckoutSolutionTest {
 	@Before
 	public void beforeEach()
 	{
-		HashMap<String, Integer> stockPrice = new HashMap<String, Integer>();
-		stockPrice.put("A", 50);
-		stockPrice.put("B", 30);
-		stockPrice.put("C", 20);
-		stockPrice.put("D", 15);
-		
-		HashMap<String, Offer> offers = new HashMap<String, Offer>();
-		offers.put("A", Offer.create(stockPrice, "A", 3, 130));
-		offers.put("B", Offer.create(stockPrice, "B", 2, 45));
-		solution = new CheckoutSolution(stockPrice, offers);
+//		HashMap<String, Integer> stockPrice = new HashMap<String, Integer>();
+//		stockPrice.put("A", 50);
+//		stockPrice.put("B", 30);
+//		stockPrice.put("C", 20);
+//		stockPrice.put("D", 15);
+//		
+//		HashMap<String, Offer> offers = new HashMap<String, Offer>();
+//		offers.put("A", Offer.create(stockPrice, "A", 3, 130));
+//		offers.put("B", Offer.create(stockPrice, "B", 2, 45));
+//		solution = new CheckoutSolution(stockPrice, offers);
+		solution = new CheckoutSolution();
 	}
 	
 	
@@ -127,6 +127,7 @@ public class CheckoutSolutionTest {
 		assertThat(offer.discount(8), is(20 * 2));
 	}
 }
+
 
 
 
