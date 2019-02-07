@@ -129,7 +129,7 @@ public class CheckoutSolutionTest {
 		Offer offer = VolumeOffer.create(Collections.singletonMap("A", 50), "A", 3, 130);
 		Basket basket = new CheckoutSolution.Basket(Collections.singletonMap("A", 6L), 0);
 		
-		assertThat(offer.discount(basket).total, is(-20 * 2));
+		assertThat(offer.discount(basket).total, is(130 * 2));
 	}
 
 
@@ -138,7 +138,8 @@ public class CheckoutSolutionTest {
 		Offer offer = VolumeOffer.create(Collections.singletonMap("A", 50), "A", 3, 130);
 		Basket basket = new CheckoutSolution.Basket(Collections.singletonMap("A", 8L), 0);
 		
-		assertThat(offer.discount(basket).total, is(-20 * 2));
+		assertThat(offer.discount(basket).total, is(130 * 2));
 	}
 }
+
 

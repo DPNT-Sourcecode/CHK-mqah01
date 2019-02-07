@@ -39,23 +39,20 @@ public class CheckoutSolution {
 	}
 	
 	public static class VolumeOffer implements Offer {
-		
-		public static final Offer NO_OFFER = new VolumeOffer("", 1, 0);
-		
 		private int quantity;
-		private int discount;
+		private int price;
 		private String sku;
 
-		public VolumeOffer(String sku, int quantity, int discount)
+		public VolumeOffer(String sku, int quantity, int price)
 		{
 			this.sku = sku;
 			this.quantity = quantity;
-			this.discount = discount;
+			this.price = price;
 		}
 		
 		public static VolumeOffer create(Map<String, Integer> stockPrice, String sku, int quantity, int price)
 		{
-			return new VolumeOffer(sku, quantity, quantity * stockPrice.get(sku) - price);
+			return new VolumeOffer(sku, quantity, price);
 		}
 		
 		@Override
@@ -69,7 +66,7 @@ public class CheckoutSolution {
 			
 			HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
 			newContents.put(sku, quantity % this.quantity);
-			return new Basket(newContents, basket.total -(actual * discount));
+			return new Basket(newContents, basket.total  + (actual * price));
 		}
 	}
 	
@@ -85,6 +82,7 @@ public class CheckoutSolution {
 		stockPrice.put("C", 20);
 		stockPrice.put("D", 15);
 		
+		offers.add(VolumeOffer.create(stockPrice, "A", 5, 200));
 		offers.add(VolumeOffer.create(stockPrice, "A", 3, 130));
 		offers.add(VolumeOffer.create(stockPrice, "B", 2, 45));
 		
@@ -127,7 +125,6 @@ public class CheckoutSolution {
 		int sumTotal = basket.quantities.entrySet().stream()
 			.mapToInt(this::price)
 			.sum();
-		System.out.println("sumtot:" + sumTotal + ",  basket.tot: " + basket.total);
 		return sumTotal + basket.total;
 	}
 
@@ -146,6 +143,7 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
 
