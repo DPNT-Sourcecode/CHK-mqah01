@@ -17,7 +17,22 @@ public class MultiDiscountOfferTest {
 
 
 	@Test
-	public void noDiscountApplied() {
+	public void noDiscountAppliedWhenNoProductsInOffer() {
+		MultiDiscountOffer offer = new MultiDiscountOffer(Arrays.asList("X", "Y", "Z"), 3, 10);
+		
+		Basket basket = new Basket(Collections.singletonMap("A", 20L), 0);
+		Basket discounted = offer.discount(basket);
+		
+		assertThat(discounted.total, is(0));
+		assertThat(discounted.quantities, allOf(
+				is(aMapWithSize(1)),
+				hasEntry("A", 20L)
+		));
+	}
+
+
+	@Test
+	public void noDiscountAppliedWhenDiscountThresholdNotMet() {
 		MultiDiscountOffer offer = new MultiDiscountOffer(Arrays.asList("X", "Y", "Z"), 3, 10);
 		
 		Basket basket = new Basket(Collections.singletonMap("X", 2L), 0);
@@ -91,4 +106,5 @@ public class MultiDiscountOfferTest {
 		));
 	}
 }
+
 

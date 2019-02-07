@@ -66,7 +66,7 @@ public class CheckoutSolution {
 		stockPrice.put("H", 10);
 		stockPrice.put("I", 35);
 		stockPrice.put("J", 60);
-		stockPrice.put("K", 80);
+		stockPrice.put("K", 70);
 		stockPrice.put("L", 90);
 		stockPrice.put("M", 15);
 		stockPrice.put("N", 40);
@@ -74,14 +74,14 @@ public class CheckoutSolution {
 		stockPrice.put("P", 50);
 		stockPrice.put("Q", 30);
 		stockPrice.put("R", 50);
-		stockPrice.put("S", 30);
+		stockPrice.put("S", 20);
 		stockPrice.put("T", 20);
 		stockPrice.put("U", 40);
 		stockPrice.put("V", 50);
 		stockPrice.put("W", 20);
-		stockPrice.put("X", 90);
-		stockPrice.put("Y", 10);
-		stockPrice.put("Z", 50);
+		stockPrice.put("X", 17);
+		stockPrice.put("Y", 20);
+		stockPrice.put("Z", 21);
 
 		// Order of offers is important, better value (for customer) offers must come
 		// first - as remaining offers see a mutated (reduced) view of the original basket
@@ -169,3 +169,4 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
