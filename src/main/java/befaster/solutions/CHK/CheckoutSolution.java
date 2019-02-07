@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
 +------+-------+----------------+
@@ -108,9 +109,12 @@ public class CheckoutSolution {
 	}
 
 	Map<String, Long> quantities(String skus) {
-		return (skus == null || skus.trim().equals("")) ? null :
+		Predicate<? super String> isEmpty = String::isEmpty;
+		return (skus == null) ? null :
 			Arrays.stream(skus.split(""))
+				.filter(isEmpty.negate())
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 

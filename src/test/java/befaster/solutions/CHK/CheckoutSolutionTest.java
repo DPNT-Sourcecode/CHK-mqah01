@@ -84,9 +84,9 @@ public class CheckoutSolutionTest {
 	
 	
 	@Test
-	public void checkoutOfEmptyStringIsInvalid() {
+	public void checkoutOfEmptyStringIsValid() {
 		
-		assertThat(solution.checkout(""), is(-1));
+		assertThat(solution.checkout(""), is(0));
 	}
 	
 	
@@ -136,35 +136,7 @@ public class CheckoutSolutionTest {
 		
 		assertThat(offer.discount(8), is(20 * 2));
 	}
-	
-	
-	@Test
-	public void checks() throws Exception {
-		assertThat(solution.checkout(""), is(-1));
-		assertThat(solution.checkout("A"), is(50));
-		assertThat(solution.checkout("B"), is(30));
-		assertThat(solution.checkout("C"), is(20));
-		assertThat(solution.checkout("D"), is(15));
-		assertThat(solution.checkout("a"), is(-1));
-		assertThat(solution.checkout("-"), is(-1));
-		assertThat(solution.checkout("ABCa"), is(-1));
-		assertThat(solution.checkout("AxA"), is(-1));
-		assertThat(solution.checkout("ABCD"), is(115));
-		assertThat(solution.checkout("A"), is(50));
-		assertThat(solution.checkout("AA"), is(100));
-		assertThat(solution.checkout("AAA"), is(130));
-		assertThat(solution.checkout("AAAA"), is(180));
-		assertThat(solution.checkout("AAAAA"), is(230));
-		assertThat(solution.checkout("AAAAAA"), is(260));
-		assertThat(solution.checkout("B"), is(30));
-		assertThat(solution.checkout("BB"), is(45));
-		assertThat(solution.checkout("BBB"), is(75));
-		assertThat(solution.checkout("BBBB"), is(90));
-		assertThat(solution.checkout("ABCDABCD"), is(215));
-		assertThat(solution.checkout("BABDDCAC"), is(215));
-		assertThat(solution.checkout("AAABB"), is(175));
-		assertThat(solution.checkout("ABCDCBAABCABBAAA"), is(505));		
-	}
 }
+
 
 
