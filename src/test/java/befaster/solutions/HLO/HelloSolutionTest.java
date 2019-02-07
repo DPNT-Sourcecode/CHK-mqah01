@@ -10,7 +10,6 @@ public class HelloSolutionTest {
 	
 	@Test
 	public void testname() {
-		MatcherAssert.assertThat(new HelloSolution().hello("friendName"), is(equalTo("Hello, World!")));
+		MatcherAssert.assertThat(new HelloSolution().hello("friendName"), is(equalTo("Hello, friendName!")));
 	}
 }
-
