@@ -13,9 +13,9 @@ public final class MultiOffer implements Offer {
 
 	public MultiOffer(String givenSku, int givenQuantity, String applyToSku, int applyToQuantity) {
 		this.givenSku = givenSku;
-		this.givenQuantity = givenQuantity;
+		this.givenQuantity = (givenSku.equals(applyToSku)) ? givenQuantity+applyToQuantity : givenQuantity;
 		this.applyToSku = applyToSku;
-		this.applyToQuantity = (givenSku.equals(applyToSku)) ? givenQuantity+applyToQuantity : applyToQuantity;
+		this.applyToQuantity = applyToQuantity;
 	}
 	
 	
@@ -31,3 +31,4 @@ public final class MultiOffer implements Offer {
 		return new Basket(newContents, basket.total);
 	}
 }
+

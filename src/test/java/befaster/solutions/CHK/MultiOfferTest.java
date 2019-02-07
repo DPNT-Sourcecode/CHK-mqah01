@@ -31,7 +31,7 @@ public class MultiOfferTest {
 		
 		assertThat(discounted.quantities, allOf(
 				is(aMapWithSize(1)),
-				hasEntry("F", 1L)
+				hasEntry("F", 2L)
 		));
 	}
 
@@ -48,4 +48,5 @@ public class MultiOfferTest {
 		));
 	}
 }
+
 

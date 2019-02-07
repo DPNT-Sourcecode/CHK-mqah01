@@ -120,31 +120,38 @@ public class CheckoutSolutionTest {
 
 
 	@Test
-	public void multiProductOfferNoFreeProductInBasket() {
+	public void multiProductMultiOfferNoFreeProductInBasket() {
 		assertThat(solution.checkout("EE"), is(80));
 	}
 
 
 	@Test
-	public void multiProductOfferSingle() {
+	public void multiProductMultiOfferSingle() {
 		assertThat(solution.checkout("EEB"), is(80));
 	}
 
 
 	@Test
-	public void multiProductOfferSingleDiscountedProductRemaining() {
+	public void multiProductMultiOfferSingleDiscountedProductRemaining() {
 		assertThat(solution.checkout("EEBB"), is(110));
 	}
 
 
 	@Test
-	public void multiProductOfferSingleDiscountNoAdditionalFreeProduct() {
+	public void multiProductMultiOfferSingleDiscountNoAdditionalFreeProduct() {
 		assertThat(solution.checkout("EEEEB"), is(160));
 	}
 
 
 	@Test
-	public void multiProductOfferAppliedTwice() {
+	public void multiProductMultiOfferAppliedTwice() {
 		assertThat(solution.checkout("EEBEEB"), is(160));
 	}
+
+
+	@Test
+	public void singleProductMultiOfferAppliedTwice() {
+		assertThat(solution.checkout("FFFFFF"), is(40));
+	}
 }
+
