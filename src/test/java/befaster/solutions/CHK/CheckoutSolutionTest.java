@@ -15,8 +15,7 @@ public class CheckoutSolutionTest {
 	public void quantities() {
 		
 		Map<String, Long> quantities = solution.quantities("A B C D A A A");
-		
-		
+
 		MatcherAssert.assertThat(quantities, allOf(
 				aMapWithSize(4),
 				hasEntry("A", 4L),
@@ -26,4 +25,5 @@ public class CheckoutSolutionTest {
 		));
 	}
 }
+
 
