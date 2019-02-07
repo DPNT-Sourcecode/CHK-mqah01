@@ -113,7 +113,8 @@ public class CheckoutSolution {
 		offers.add(new DiscountOffer("V", 3, 130));
 		offers.add(new DiscountOffer("V", 2, 90));
 		
-		offers.add(new MultiDiscountOffer(Arrays.asList("S", "T", "X", "Y", "Z"), 3, 45));
+		List<String> multiDiscountProductList = Arrays.asList("S", "T", "X", "Y", "Z");
+		offers.add(new MultiDiscountOffer(multiDiscountProductList, 3, 45));
 	}
 	
 	public CheckoutSolution(Map<String, Integer> stockPrice, List<Offer> offers)
@@ -170,6 +171,7 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
 

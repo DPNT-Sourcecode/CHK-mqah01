@@ -153,4 +153,11 @@ public class CheckoutSolutionTest {
 	public void singleProductMultiOfferAppliedTwice() {
 		assertThat(solution.checkout("FFFFFF"), is(40));
 	}
+
+
+	@Test
+	public void multiDiscountOffer() {
+		assertThat(solution.checkout("SSSZ"), is(65));
+	}
 }
+
