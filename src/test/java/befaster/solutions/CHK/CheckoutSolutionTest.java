@@ -48,6 +48,19 @@ public class CheckoutSolutionTest {
 				hasEntry("D", 1L)
 		));
 	}
+	@Test
+	public void quantityForEmptyStringIsEmptyMap() {
+		
+		Map<String, Long> quantities = solution.quantities("");
+
+		assertThat(quantities, allOf(
+				aMapWithSize(4),
+				hasEntry("A", 4L),
+				hasEntry("B", 1L),
+				hasEntry("C", 1L),
+				hasEntry("D", 1L)
+		));
+	}
 	
 	
 	@Test
@@ -74,9 +87,16 @@ public class CheckoutSolutionTest {
 	
 	
 	@Test
-	public void checkoutOfNullSkus() {
+	public void checkoutOfNullSkusIsInvalid() {
 		
 		assertThat(solution.checkout(null), is(-1));
+	}
+	
+	
+	@Test
+	public void checkoutOfEmptyStringIsValid() {
+		
+		assertThat(solution.checkout(""), is(0));
 	}
 	
 	
@@ -127,6 +147,7 @@ public class CheckoutSolutionTest {
 		assertThat(offer.discount(8), is(20 * 2));
 	}
 }
+
 
 
 
