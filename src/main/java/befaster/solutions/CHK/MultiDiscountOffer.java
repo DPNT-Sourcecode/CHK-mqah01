@@ -1,7 +1,9 @@
 package befaster.solutions.CHK;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class MultiDiscountOffer implements Offer {
 
@@ -40,15 +42,17 @@ public class MultiDiscountOffer implements Offer {
 			long basketQuantity = sub.getOrDefault(sku, 0L);
 			long remove = Math.min(basketQuantity, totalBasketQuantity);
 			basketQuantity -= remove;
-			if(basketQuantity == 0L) {
-				sub.remove(sku);
-			} else {
-				sub.put(sku, basketQuantity);
-			}
+			sub.put(sku, basketQuantity);
 			totalBasketQuantity -= remove;
 		}
 		HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
 		newContents.putAll(sub);
+		for(Iterator<Long> it = newContents.values().iterator(); it.hasNext();) {
+			if(it.next().longValue() == 0L) {
+				it.remove();
+			}
+		}
 		return new Basket(newContents, subTotal);
 	}
 }
+
