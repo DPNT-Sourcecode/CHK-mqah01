@@ -6,13 +6,9 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
 +------+-------+----------------+
@@ -29,12 +25,21 @@ import java.util.stream.Collectors;
 public class CheckoutSolution {
 	
 	
-	private static final Map<String, Integer> STOCK_PRICE = new HashMap<String, Integer>();
-	static {
-		STOCK_PRICE.put("A", 50);
-		STOCK_PRICE.put("B", 30);
-		STOCK_PRICE.put("C", 20);
-		STOCK_PRICE.put("D", 15);
+	Map<String, Integer> stockPrice;
+
+
+	public CheckoutSolution()
+	{
+		this(new HashMap<String, Integer>());
+		stockPrice.put("A", 50);
+		stockPrice.put("B", 30);
+		stockPrice.put("C", 20);
+		stockPrice.put("D", 15);
+	}
+	
+	public CheckoutSolution(Map<String, Integer> stockPrice)
+	{
+		this.stockPrice = stockPrice;
 	}
 	
 	
@@ -51,7 +56,7 @@ public class CheckoutSolution {
 
 	boolean areValidSkus(Set<String> skus) {
 		for(String sku : skus) {
-			if(!STOCK_PRICE.containsKey(sku)) {
+			if(!stockPrice.containsKey(sku)) {
 				return false;
 			}
 		}
@@ -68,7 +73,7 @@ public class CheckoutSolution {
 	
 	private int price(Map.Entry<String, Long> quantity)
 	{
-		return  STOCK_PRICE.get(quantity.getKey()) * quantity.getValue().intValue();
+		return  stockPrice.get(quantity.getKey()) * quantity.getValue().intValue();
 	}
 
 	Map<String, Long> quantities(String skus) {
@@ -77,8 +82,3 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
-
-
-
-
-
