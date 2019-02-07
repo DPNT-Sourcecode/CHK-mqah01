@@ -12,7 +12,7 @@ public class VolumeOfferTest {
 	
 	@Test
 	public void whenCheckoutQuantityIsBelowOfferQuantityThenDiscountIsZero() {
-		Offer offer = VolumeOffer.create(Collections.singletonMap("A", 50), "A", 3, 130);
+		Offer offer = DiscountOffer.create(Collections.singletonMap("A", 50), "A", 3, 130);
 		Basket basket = new Basket(Collections.singletonMap("A", 2L), 0);
 		
 		assertThat(offer.discount(basket).total, is(0));
@@ -21,7 +21,7 @@ public class VolumeOfferTest {
 
 	@Test
 	public void whenCheckoutQuantityIsExactlyDoubleTheOfferQuantityThenDiscountIsDoubled() {
-		Offer offer = VolumeOffer.create(Collections.singletonMap("A", 50), "A", 3, 130);
+		Offer offer = DiscountOffer.create(Collections.singletonMap("A", 50), "A", 3, 130);
 		Basket basket = new Basket(Collections.singletonMap("A", 6L), 0);
 		
 		assertThat(offer.discount(basket).total, is(130 * 2));
@@ -30,10 +30,11 @@ public class VolumeOfferTest {
 
 	@Test
 	public void whenCheckoutQuantityIsMoreThanDoubleTheOfferQuantityThenDiscountIsDoubled() {
-		Offer offer = VolumeOffer.create(Collections.singletonMap("A", 50), "A", 3, 130);
+		Offer offer = DiscountOffer.create(Collections.singletonMap("A", 50), "A", 3, 130);
 		Basket basket = new Basket(Collections.singletonMap("A", 8L), 0);
 		
 		assertThat(offer.discount(basket).total, is(130 * 2));
 	}
 
 }
+

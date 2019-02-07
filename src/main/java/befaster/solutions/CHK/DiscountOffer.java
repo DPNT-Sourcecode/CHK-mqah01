@@ -4,19 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public final class VolumeOffer implements Offer {
+public final class DiscountOffer implements Offer {
 	private int quantity;
 	private int price;
 	private String sku;
 
-	public VolumeOffer(String sku, int quantity, int price) {
+	public DiscountOffer(String sku, int quantity, int price) {
 		this.sku = sku;
 		this.quantity = quantity;
 		this.price = price;
 	}
 
-	public static VolumeOffer create(Map<String, Integer> stockPrice, String sku, int quantity, int price) {
-		return new VolumeOffer(sku, quantity, price);
+	public static DiscountOffer create(Map<String, Integer> stockPrice, String sku, int quantity, int price) {
+		return new DiscountOffer(sku, quantity, price);
 	}
 
 	@Override

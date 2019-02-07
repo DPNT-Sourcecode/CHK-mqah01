@@ -27,6 +27,20 @@ public class CheckoutSolution {
 	
 	
 	
+	private final class MultiOffer implements Offer {
+		@Override
+		public Basket discount(Basket basket) {
+			long quantity = basket.quantities.getOrDefault("E", 0L);
+			if(quantity < 2L || !basket.quantities.containsKey("B")) {
+				return basket;
+			}
+			int free = (int) (quantity / 2);
+			HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
+			newContents.put("B", Math.max(newContents.get("B") - free, 0)); 
+			return new Basket(newContents, basket.total);
+		}
+	}
+
 	final Map<String, Integer> stockPrice;
 	final List<Offer> offers;
 
@@ -39,25 +53,13 @@ public class CheckoutSolution {
 		stockPrice.put("D", 15);
 		stockPrice.put("E", 40);
 		
-		offers.add(VolumeOffer.create(stockPrice, "A", 5, 200));
-		offers.add(VolumeOffer.create(stockPrice, "A", 3, 130));
+		offers.add(DiscountOffer.create(stockPrice, "A", 5, 200));
+		offers.add(DiscountOffer.create(stockPrice, "A", 3, 130));
 		
 		// Am not refactoring yet - as expect spec changes on subsequent rounds...
-		offers.add(new Offer() {
-			@Override
-			public Basket discount(Basket basket) {
-				long quantity = basket.quantities.getOrDefault("E", 0L);
-				if(quantity < 2L || !basket.quantities.containsKey("B")) {
-					return basket;
-				}
-				int free = (int) (quantity / 2);
-				HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
-				newContents.put("B", Math.max(newContents.get("B") - free, 0)); 
-				return new Basket(newContents, basket.total);
-			}
-		});
+		offers.add(new MultiOffer());
 		
-		offers.add(VolumeOffer.create(stockPrice, "B", 2, 45));
+		offers.add(DiscountOffer.create(stockPrice, "B", 2, 45));
 
 	}
 	
@@ -115,6 +117,7 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
 
