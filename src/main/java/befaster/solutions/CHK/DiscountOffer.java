@@ -25,6 +25,3 @@ public class DiscountOffer implements Offer {
 		return new Basket(newContents, basket.total + (actual * price));
 	}
 }
-
-
-
