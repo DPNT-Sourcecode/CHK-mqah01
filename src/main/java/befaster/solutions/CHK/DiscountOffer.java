@@ -16,8 +16,8 @@ public final class DiscountOffer implements Offer {
 
 	@Override
 	public Basket discount(Basket basket) {
-		Long quantity = basket.quantities.get(sku);
-		if (quantity == null) {
+		Long quantity = basket.quantities.getOrDefault(sku, 0L);
+		if (quantity == 0L) {
 			return basket;
 		}
 		int actual = quantity.intValue() / this.quantity;
@@ -26,3 +26,4 @@ public final class DiscountOffer implements Offer {
 		return new Basket(newContents, basket.total + (actual * price));
 	}
 }
+
