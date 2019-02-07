@@ -63,12 +63,13 @@ public class MultiDiscountOfferTest {
 		Basket basket = new Basket(map, 0);
 		Basket discounted = offer.discount(basket);
 		
-		assertThat(discounted.total, is(10));
+		assertThat(discounted.total, is(20));
 		assertThat(discounted.quantities, allOf(
 				is(aMapWithSize(1)),
 				hasEntry("Y", 1L)
 		));
 	}
 }
+
 
 
