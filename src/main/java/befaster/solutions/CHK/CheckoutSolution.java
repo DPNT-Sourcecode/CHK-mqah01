@@ -24,22 +24,22 @@ import java.util.function.Predicate;
  */
 public class CheckoutSolution {
 	
+	
+	public static class Basket {
+		Map<String, Long> quantities;
+	}
+	
 	public static class Offer {
 		
-		public static final Offer NO_OFFER = new Offer(1, 0);
-		
-		private int quantity;
-		private int discount;
+		private final Map<String, Integer> stockPrice;
+		private final int quantity;
+		private final int discount;
 
-		public Offer(int quantity, int discount)
+		public Offer(Map<String, Integer> stockPrice, int quantity, int price)
 		{
+			this.stockPrice = stockPrice;
 			this.quantity = quantity;
-			this.discount = discount;
-		}
-		
-		public static Offer create(Map<String, Integer> stockPrice, String sku, int quantity, int price)
-		{
-			return new Offer(quantity, quantity * stockPrice.get(sku) - price);
+			this.discount = quantity * stockPrice.get(sku) - price;
 		}
 		
 		public int discount(int quantity)
@@ -116,5 +116,6 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
