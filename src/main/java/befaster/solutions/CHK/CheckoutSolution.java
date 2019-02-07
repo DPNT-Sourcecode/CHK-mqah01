@@ -4,8 +4,10 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -67,21 +69,21 @@ public class CheckoutSolution {
 	
 	
 	final Map<String, Integer> stockPrice;
-	final Map<String, Offer> offers;
+	final List<Offer> offers;
 
 	public CheckoutSolution()
 	{
-		this(new HashMap<String, Integer>(), new HashMap<String, Offer>());
+		this(new HashMap<String, Integer>(), new ArrayList<Offer>());
 		stockPrice.put("A", 50);
 		stockPrice.put("B", 30);
 		stockPrice.put("C", 20);
 		stockPrice.put("D", 15);
 		
-		offers.put("A", Offer.create(stockPrice, "A", 3, 130));
-		offers.put("B", Offer.create(stockPrice, "B", 2, 45));
+		offers.add(Offer.create(stockPrice, "A", 3, 130));
+		offers.add(Offer.create(stockPrice, "B", 2, 45));
 	}
 	
-	public CheckoutSolution(Map<String, Integer> stockPrice, Map<String, Offer> offers)
+	public CheckoutSolution(Map<String, Integer> stockPrice, List<Offer> offers)
 	{
 		this.stockPrice = stockPrice;
 		this.offers = offers;
@@ -94,9 +96,9 @@ public class CheckoutSolution {
     	if(quantities == null || !areValidSkus(quantities.keySet())) {
     		return -1;
     	}
-    	new Basket(quantities);
+    	Basket basket = new Basket(quantities);
     	
-    	return totalPrice(quantities);
+    	return totalPrice(basket);
     }
 
 	boolean areValidSkus(Set<String> skus) {
@@ -108,20 +110,28 @@ public class CheckoutSolution {
 		return true;
 	}
 
-	private Integer totalPrice(Map<String, Long> quantities) {
+	private Integer totalPrice(Basket basket) {
 		
-		return quantities.entrySet().stream()
+		int sumTotal = basket.quantities.entrySet().stream()
 			.mapToInt(this::price)
 			.sum();
+		
+		int discount = priceOffers(basket);
+		
+		return sumTotal + discount;
 	}
 	
+	private int priceOffers(Basket basket) {
+		return offers.stream()
+			.mapToInt(o -> o.discount(basket))
+			.sum();
+	}
+
 	private int price(Map.Entry<String, Long> quantity)
 	{
 		String sku = quantity.getKey();
 		int checkoutQuantity = quantity.getValue().intValue();
-
-		return  stockPrice.get(sku) * checkoutQuantity
-				- offers.getOrDefault(sku, Offer.NO_OFFER).discount(checkoutQuantity);
+		return  stockPrice.get(sku) * checkoutQuantity;
 	}
 
 	Map<String, Long> quantities(String skus) {
@@ -132,4 +142,5 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
