@@ -2,7 +2,6 @@ package befaster.solutions.CHK;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public class MultiDiscountOffer implements Offer {
 
@@ -37,17 +36,17 @@ public class MultiDiscountOffer implements Offer {
 		int rem = totalBasketQuantity % quantity;
 		totalBasketQuantity -= rem;
 		
-		
 		for(String sku : skus) {
 			long basketQuantity = sub.getOrDefault(sku, 0L);
 			long remove = Math.min(basketQuantity, totalBasketQuantity);
 			sub.put(sku, basketQuantity - remove);
 			totalBasketQuantity -= remove;
 		}
-		
-		
-		return null;
+		HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
+		newContents.putAll(sub);
+		return new Basket(newContents, subTotal);
 	}
 }
+
 
 
