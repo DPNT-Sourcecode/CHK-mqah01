@@ -116,8 +116,3 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
-
-
-
-
-
