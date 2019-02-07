@@ -31,15 +31,22 @@ public class CheckoutSolution {
 	
 	public static class Offer {
 		
-		private final Map<String, Integer> stockPrice;
-		private final int quantity;
-		private final int discount;
+		public static final Offer NO_OFFER = new Offer("", 1, 0);
+		
+		private int quantity;
+		private int discount;
+		private String sku;
 
-		public Offer(Map<String, Integer> stockPrice, int quantity, int price)
+		public Offer(String sku, int quantity, int discount)
 		{
-			this.stockPrice = stockPrice;
+			this.sku = sku;
 			this.quantity = quantity;
-			this.discount = quantity * stockPrice.get(sku) - price;
+			this.discount = discount;
+		}
+		
+		public static Offer create(Map<String, Integer> stockPrice, String sku, int quantity, int price)
+		{
+			return new Offer(sku, quantity, quantity * stockPrice.get(sku) - price);
 		}
 		
 		public int discount(int quantity)
@@ -116,6 +123,3 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
-
-
-
