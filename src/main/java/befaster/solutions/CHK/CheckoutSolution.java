@@ -48,16 +48,20 @@ public class CheckoutSolution {
 
 	public CheckoutSolution()
 	{
-		this(new HashMap<String, Integer>());
+		this(new HashMap<String, Integer>(), new HashMap<String, Offer>());
 		stockPrice.put("A", 50);
 		stockPrice.put("B", 30);
 		stockPrice.put("C", 20);
 		stockPrice.put("D", 15);
+		
+		offers.put("A", new Offer("A", 3, 130));
+		offers.put("B", new Offer("B", 2, 45));
 	}
 	
-	public CheckoutSolution(Map<String, Integer> stockPrice)
+	public CheckoutSolution(Map<String, Integer> stockPrice, Map<String, Offer> offers)
 	{
 		this.stockPrice = stockPrice;
+		this.offers = offers;
 	}
 	
 	
@@ -99,6 +103,7 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
 
