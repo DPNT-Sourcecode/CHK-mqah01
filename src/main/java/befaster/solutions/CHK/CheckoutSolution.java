@@ -42,8 +42,8 @@ public class CheckoutSolution {
 		
 		offers.add(VolumeOffer.create(stockPrice, "A", 5, 200));
 		offers.add(VolumeOffer.create(stockPrice, "A", 3, 130));
-		offers.add(VolumeOffer.create(stockPrice, "B", 2, 45));
 		
+		// Am not refactoring yet - as expect spec changes on subsequent rounds...
 		offers.add(new Offer() {
 			@Override
 			public Basket discount(Basket basket) {
@@ -57,6 +57,9 @@ public class CheckoutSolution {
 				return new Basket(newContents, basket.total);
 			}
 		});
+		
+		offers.add(VolumeOffer.create(stockPrice, "B", 2, 45));
+
 	}
 	
 	public CheckoutSolution(Map<String, Integer> stockPrice, List<Offer> offers)
@@ -113,4 +116,5 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 

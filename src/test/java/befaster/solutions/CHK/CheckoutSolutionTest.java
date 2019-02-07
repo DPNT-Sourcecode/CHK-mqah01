@@ -135,5 +135,18 @@ public class CheckoutSolutionTest {
 	public void multiProductOfferSingleDiscountedProductRemaining() {
 		assertThat(solution.checkout("EEBB"), is(110));
 	}
+
+
+	@Test
+	public void multiProductOfferSingleDiscountNoAdditionalFreeProduct() {
+		assertThat(solution.checkout("EEEEB"), is(160));
+	}
+
+
+	@Test
+	public void multiProductOfferAppliedTwice() {
+		assertThat(solution.checkout("EEBEEB"), is(160));
+	}
 }
+
 
