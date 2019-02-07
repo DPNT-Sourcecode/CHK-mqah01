@@ -63,7 +63,7 @@ public class CheckoutSolution {
 				return 0;
 			}
 			int actual = quantity.intValue() / this.quantity;
-			return actual * discount;
+			return -(actual * discount);
 		}
 	}
 	
@@ -142,5 +142,6 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 

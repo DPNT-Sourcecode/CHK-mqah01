@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
+import befaster.solutions.CHK.CheckoutSolution.Basket;
 import befaster.solutions.CHK.CheckoutSolution.Offer;
 
 public class CheckoutSolutionTest {
@@ -117,23 +118,27 @@ public class CheckoutSolutionTest {
 	@Test
 	public void whenCheckoutQuantityIsBelowOfferQuantityThenDiscountIsZero() {
 		Offer offer = Offer.create(Collections.singletonMap("A", 50), "A", 3, 130);
+		Basket basket = new CheckoutSolution.Basket(Collections.singletonMap("A", 2L));
 		
-		assertThat(offer.discount(2), is(0));
+		assertThat(offer.discount(basket), is(0));
 	}
 
 
 	@Test
 	public void whenCheckoutQuantityIsExactlyDoubleTheOfferQuantityThenDiscountIsDoubled() {
 		Offer offer = Offer.create(Collections.singletonMap("A", 50), "A", 3, 130);
+		Basket basket = new CheckoutSolution.Basket(Collections.singletonMap("A", 6L));
 		
-		assertThat(offer.discount(6), is(20 * 2));
+		assertThat(offer.discount(basket), is(20 * 2));
 	}
 
 
 	@Test
 	public void whenCheckoutQuantityIsMoreThanDoubleTheOfferQuantityThenDiscountIsDoubled() {
 		Offer offer = Offer.create(Collections.singletonMap("A", 50), "A", 3, 130);
+		Basket basket = new CheckoutSolution.Basket(Collections.singletonMap("A", 8L));
 		
-		assertThat(offer.discount(8), is(20 * 2));
+		assertThat(offer.discount(basket), is(20 * 2));
 	}
 }
+
