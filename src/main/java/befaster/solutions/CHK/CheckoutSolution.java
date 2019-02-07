@@ -40,9 +40,26 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
     	
     	Map<String, Long> quantities = quantities(skus);
+    	if(!areValidSkus(quantities.keySet())) {
+    		return -1;
+    	}
     	
-    	return 0;
+    	
+    	return totalPrice(quantities);
     }
+
+	private Integer totalPrice(Map<String, Long> quantities) {
+		
+		quantities.entrySet().stream()
+			.mapToInt(this::price);
+		
+		return null;
+	}
+	
+	private int price(Map.Entry<String, Long> quantity)
+	{
+		return  STOCK_PRICE.get(quantity.getKey()) * quantity.getValue().intValue();
+	}
 
 	Map<String, Long> quantities(String skus) {
 		return (skus == null) ? emptyMap() : 
@@ -50,6 +67,7 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
 
