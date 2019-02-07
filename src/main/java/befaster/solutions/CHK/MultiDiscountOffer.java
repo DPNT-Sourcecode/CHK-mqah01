@@ -31,11 +31,23 @@ public class MultiDiscountOffer implements Offer {
 		if(sub.isEmpty()) {
 			return basket;
 		}
+
+		int totalBasketQuantity = sub.values().stream().mapToInt(Long::intValue).sum();
+		int subTotal = (totalBasketQuantity / quantity) * price;
+		int rem = totalBasketQuantity % quantity;
+		totalBasketQuantity -= rem;
 		
-		int totalQuantity = sub.values().stream().mapToInt(Long::intValue).sum();
-		int subPrice = 0;
+		
+		for(String sku : skus) {
+			long basketQuantity = sub.getOrDefault(sku, 0L);
+			long remove = Math.min(basketQuantity, totalBasketQuantity);
+			sub.put(sku, basketQuantity - remove);
+			totalBasketQuantity -= remove;
+		}
+		
 		
 		return null;
 	}
 }
+
 
