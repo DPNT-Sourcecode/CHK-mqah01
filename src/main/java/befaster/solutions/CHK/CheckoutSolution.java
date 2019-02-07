@@ -22,6 +22,26 @@ import java.util.function.Predicate;
 | D    | 15    |                        |
 | E    | 40    | 2E get one B free      |
 | F    | 10    | 2F get one F free      |
+| G    | 20    |                        |
+| H    | 10    | 5H for 45, 10H for 80  |
+| I    | 35    |                        |
+| J    | 60    |                        |
+| K    | 80    | 2K for 150             |
+| L    | 90    |                        |
+| M    | 15    |                        |
+| N    | 40    | 3N get one M free      |
+| O    | 10    |                        |
+| P    | 50    | 5P for 200             |
+| Q    | 30    | 3Q for 80              |
+| R    | 50    | 3R get one Q free      |
+| S    | 30    |                        |
+| T    | 20    |                        |
+| U    | 40    | 3U get one U free      |
+| V    | 50    | 2V for 90, 3V for 130  |
+| W    | 20    |                        |
+| X    | 90    |                        |
+| Y    | 10    |                        |
+| Z    | 50    |                        |
 +------+-------+------------------------+
  */
 public class CheckoutSolution {
@@ -42,6 +62,28 @@ public class CheckoutSolution {
 		stockPrice.put("D", 15);
 		stockPrice.put("E", 40);
 		stockPrice.put("F", 10);
+		stockPrice.put("G", 20);
+		stockPrice.put("H", 10);
+		stockPrice.put("I", 35);
+		stockPrice.put("J", 60);
+		stockPrice.put("K", 80);
+		stockPrice.put("L", 90);
+		stockPrice.put("M", 15);
+		stockPrice.put("N", 40);
+		stockPrice.put("O", 10);
+		stockPrice.put("P", 50);
+		stockPrice.put("Q", 30);
+		stockPrice.put("R", 50);
+		stockPrice.put("S", 30);
+		stockPrice.put("T", 20);
+		stockPrice.put("U", 40);
+		stockPrice.put("V", 50);
+		stockPrice.put("W", 20);
+		stockPrice.put("X", 90);
+		stockPrice.put("Y", 10);
+		stockPrice.put("Z", 50);
+
+
 		
 		offers.add(new DiscountOffer("A", 5, 200));
 		offers.add(new DiscountOffer("A", 3, 130));
@@ -107,3 +149,4 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
