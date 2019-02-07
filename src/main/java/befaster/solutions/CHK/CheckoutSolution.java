@@ -25,6 +25,9 @@ import java.util.Set;
 public class CheckoutSolution {
 	
 	public static class Offer {
+		
+		public static final Offer NO_OFFER = new Offer(1, 0);
+		
 		private int quantity;
 		private int discount;
 
@@ -98,7 +101,11 @@ public class CheckoutSolution {
 	
 	private int price(Map.Entry<String, Long> quantity)
 	{
-		return  stockPrice.get(quantity.getKey()) * quantity.getValue().intValue();
+		String sku = quantity.getKey();
+		int checkoutQuantity = quantity.getValue().intValue();
+
+		return  stockPrice.get(sku) * checkoutQuantity
+				- offers.getOrDefault(sku, Offer.NO_OFFER).discount(checkoutQuantity);
 	}
 
 	Map<String, Long> quantities(String skus) {
@@ -107,4 +114,5 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
