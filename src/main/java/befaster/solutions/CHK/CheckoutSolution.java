@@ -58,8 +58,8 @@ public class CheckoutSolution {
 		stockPrice.put("C", 20);
 		stockPrice.put("D", 15);
 		
-		offers.put("A", new Offer("A", 3, 130));
-		offers.put("B", new Offer("B", 2, 45));
+		offers.put("A", Offer.create(stockPrice, "A", 3, 130));
+		offers.put("B", Offer.create(stockPrice, "B", 2, 45));
 	}
 	
 	public CheckoutSolution(Map<String, Integer> stockPrice, Map<String, Offer> offers)
@@ -107,8 +107,3 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
-
-
-
-
-
