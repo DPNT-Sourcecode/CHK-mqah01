@@ -70,7 +70,7 @@ public class CheckoutSolution {
 			HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
 			newContents.put(sku, quantity % this.quantity);
 			
-			return new Basket(-(actual * discount);
+			return new Basket(newContents, basket.total -(actual * discount));
 		}
 	}
 	
@@ -151,9 +151,3 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
-
-
-
-
-
-

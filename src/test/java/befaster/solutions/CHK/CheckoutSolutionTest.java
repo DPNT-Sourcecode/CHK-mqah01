@@ -141,5 +141,3 @@ public class CheckoutSolutionTest {
 		assertThat(offer.discount(basket), is(-20 * 2));
 	}
 }
-
-
