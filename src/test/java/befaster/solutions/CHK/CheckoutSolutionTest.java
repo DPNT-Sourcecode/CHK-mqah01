@@ -154,5 +154,3 @@ public class CheckoutSolutionTest {
 		assertThat(solution.checkout("FFFFFF"), is(40));
 	}
 }
-
-

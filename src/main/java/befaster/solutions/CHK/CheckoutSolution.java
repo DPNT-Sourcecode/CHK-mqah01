@@ -85,6 +85,8 @@ public class CheckoutSolution {
 
 		// Order of offers is important, better value (for customer) offers must come
 		// first - as remaining offers see a mutated (reduced) view of the original basket
+		// could be sorted multi-offers first (sub-sorted by target quantity)
+		// and the discount offers descending quantity
 		
 		offers.add(new DiscountOffer("A", 5, 200));
 		offers.add(new DiscountOffer("A", 3, 130));
@@ -167,6 +169,3 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
-
-
-

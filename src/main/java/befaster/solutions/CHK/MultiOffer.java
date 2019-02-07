@@ -31,4 +31,3 @@ public final class MultiOffer implements Offer {
 		return new Basket(newContents, basket.total);
 	}
 }
-
