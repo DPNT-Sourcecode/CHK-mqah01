@@ -15,7 +15,7 @@ public final class MultiOffer implements Offer {
 		this.givenSku = givenSku;
 		this.givenQuantity = givenQuantity;
 		this.applyToSku = applyToSku;
-		this.applyToQuantity = applyToQuantity;
+		this.applyToQuantity = (givenSku.equals(applyToSku)) ? givenQuantity+applyToQuantity : applyToQuantity;
 	}
 	
 	
