@@ -46,6 +46,20 @@ public class CheckoutSolutionTest {
 	
 	
 	@Test
+	public void checkoutOfInvalidSkus() {
+		
+		assertThat(solution.checkout("Z"), is(-1));
+	}
+	
+	
+	@Test
+	public void checkoutOfNullSkus() {
+		
+		assertThat(solution.checkout(null), is(0));
+	}
+	
+	
+	@Test
 	public void totalPrice() {
 		assertThat(solution.checkout("A B C"), is(100));
 	}
@@ -56,4 +70,5 @@ public class CheckoutSolutionTest {
 		assertThat(solution.checkout("A A A B C"), is(200));
 	}
 }
+
 
