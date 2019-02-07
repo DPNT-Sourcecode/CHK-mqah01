@@ -24,6 +24,21 @@ import java.util.Set;
  */
 public class CheckoutSolution {
 	
+	public static class Offer {
+		
+		private String sku;
+		private int quantity;
+		private int price;
+
+		public Offer(String sku, int quantity, int price)
+		{
+			this.sku = sku;
+			this.quantity = quantity;
+			this.price = price;
+		}
+		
+	}
+	
 	
 	Map<String, Integer> stockPrice;
 
@@ -81,4 +96,5 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
