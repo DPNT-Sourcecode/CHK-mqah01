@@ -56,9 +56,6 @@ public class CheckoutSolution {
 			return new VolumeOffer(sku, quantity, quantity * stockPrice.get(sku) - price);
 		}
 		
-		/* (non-Javadoc)
-		 * @see befaster.solutions.CHK.Offer#discount(befaster.solutions.CHK.CheckoutSolution.Basket)
-		 */
 		@Override
 		public int discount(Basket basket)
 		{
@@ -146,6 +143,7 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
 
