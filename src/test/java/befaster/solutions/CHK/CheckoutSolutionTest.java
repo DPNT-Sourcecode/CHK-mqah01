@@ -1,8 +1,10 @@
 package befaster.solutions.CHK;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.aMapWithSize;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.hasEntry;
+import static org.hamcrest.Matchers.is;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -48,12 +50,6 @@ public class CheckoutSolutionTest {
 				hasEntry("C", 1L),
 				hasEntry("D", 1L)
 		));
-	}
-	@Test
-	public void quantityForEmptyStringIsEmptyMap() {
-		
-		Map<String, Long> quantities = solution.quantities("");
-		assertThat(quantities, is(anEmptyMap()));
 	}
 	
 	
@@ -145,7 +141,6 @@ public class CheckoutSolutionTest {
 	@Test
 	public void checks() throws Exception {
 		assertThat(solution.checkout(""), is(-1));
-		
 		assertThat(solution.checkout("A"), is(50));
 		assertThat(solution.checkout("B"), is(30));
 		assertThat(solution.checkout("C"), is(20));
@@ -171,3 +166,4 @@ public class CheckoutSolutionTest {
 		assertThat(solution.checkout("ABCDCBAABCABBAAA"), is(505));		
 	}
 }
+
