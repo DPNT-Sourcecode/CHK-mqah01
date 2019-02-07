@@ -26,10 +26,10 @@ public final class VolumeOffer implements Offer {
 			return basket;
 		}
 		int actual = quantity.intValue() / this.quantity;
-
 		HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
 		newContents.put(sku, quantity % this.quantity);
 		return new Basket(newContents, basket.total + (actual * price));
 	}
 }
+
 
