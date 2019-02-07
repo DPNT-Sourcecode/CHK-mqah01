@@ -68,8 +68,9 @@ public class CheckoutSolution {
 			int actual = quantity.intValue() / this.quantity;
 			
 			HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
+			System.out.println("pre: "+ newContents);
 			newContents.put(sku, quantity % this.quantity);
-			System.out.println(newContents);
+			System.out.println("post: "+ newContents);
 			return new Basket(newContents, basket.total -(actual * discount));
 		}
 	}
@@ -147,4 +148,5 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
