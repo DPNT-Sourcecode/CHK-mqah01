@@ -1,7 +1,6 @@
 package befaster.solutions.CHK;
 
 import java.util.HashMap;
-import java.util.Map;
 
 
 public final class DiscountOffer implements Offer {
@@ -13,10 +12,6 @@ public final class DiscountOffer implements Offer {
 		this.sku = sku;
 		this.quantity = quantity;
 		this.price = price;
-	}
-
-	public static DiscountOffer create(Map<String, Integer> stockPrice, String sku, int quantity, int price) {
-		return new DiscountOffer(sku, quantity, price);
 	}
 
 	@Override
@@ -31,3 +26,4 @@ public final class DiscountOffer implements Offer {
 		return new Basket(newContents, basket.total + (actual * price));
 	}
 }
+

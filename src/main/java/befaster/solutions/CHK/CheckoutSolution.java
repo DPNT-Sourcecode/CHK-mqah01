@@ -40,14 +40,15 @@ public class CheckoutSolution {
 		stockPrice.put("C", 20);
 		stockPrice.put("D", 15);
 		stockPrice.put("E", 40);
+		stockPrice.put("F", 10);
 		
-		offers.add(DiscountOffer.create(stockPrice, "A", 5, 200));
-		offers.add(DiscountOffer.create(stockPrice, "A", 3, 130));
+		offers.add(new DiscountOffer("A", 5, 200));
+		offers.add(new DiscountOffer("A", 3, 130));
 		
-		// Am not refactoring yet - as expect spec changes on subsequent rounds...
-		offers.add(new MultiOffer());
+		offers.add(new MultiOffer("E", 2, "B", 1));
+		offers.add(new MultiOffer("F", 2, "F", 1));
 		
-		offers.add(DiscountOffer.create(stockPrice, "B", 2, 45));
+		offers.add(new DiscountOffer("B", 2, 45));
 
 	}
 	
@@ -105,6 +106,7 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
 
