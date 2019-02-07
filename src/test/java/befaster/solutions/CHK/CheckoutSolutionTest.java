@@ -4,15 +4,35 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
 
+import befaster.solutions.CHK.CheckoutSolution.Offer;
+
 public class CheckoutSolutionTest {
 
-	CheckoutSolution solution = new CheckoutSolution();
+	CheckoutSolution solution;
+	
+	public void beforeEach()
+	{
+		HashMap<String, Integer> stockPrice = new HashMap<String, Integer>();
+		stockPrice.put("A", 50);
+		stockPrice.put("B", 30);
+		stockPrice.put("C", 20);
+		stockPrice.put("D", 15);
+		
+		HashMap<String, Offer> offers = new HashMap<String, Offer>();
+		solution = new CheckoutSolution(stockPrice, offers);
+		offers.put("A", solution.new Offer("A", 3, 130));
+		offers.put("B", solution.new Offer("B", 2, 45));
+		
+	}
+	
+	
 	
 	@Test
 	public void quantities() {
@@ -69,6 +89,11 @@ public class CheckoutSolutionTest {
 	public void totalPriceDuplicateSkus() {
 		assertThat(solution.checkout("A A A B C"), is(200));
 	}
+	
+	
+	
+	
 }
+
 
 
