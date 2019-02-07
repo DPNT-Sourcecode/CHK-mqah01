@@ -109,10 +109,11 @@ public class CheckoutSolution {
 	}
 
 	Map<String, Long> quantities(String skus) {
-		return (skus == null) ? emptyMap() : 
+		return (skus == null) ? emptyMap() :
 			Arrays.stream(skus.split("[\\s,]+"))
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
