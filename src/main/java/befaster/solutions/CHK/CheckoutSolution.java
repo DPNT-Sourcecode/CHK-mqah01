@@ -27,16 +27,6 @@ import java.util.function.Predicate;
 public class CheckoutSolution {
 	
 	
-	public static class Basket {
-		
-		Map<String, Long> quantities;
-		int total;
-
-		public Basket(Map<String, Long> quantities, int total) {
-			this.quantities = quantities;
-			this.total = total;
-		}
-	}
 	
 	final Map<String, Integer> stockPrice;
 	final List<Offer> offers;
@@ -110,6 +100,7 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
 

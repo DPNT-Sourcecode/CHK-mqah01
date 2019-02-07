@@ -14,7 +14,6 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import befaster.solutions.CHK.CheckoutSolution.Basket;
 
 public class CheckoutSolutionTest {
 
@@ -118,34 +117,8 @@ public class CheckoutSolutionTest {
 	public void totalPriceIncludingMultipleOffersOnSameSku() {
 		assertThat(solution.checkout("AAAAA" + "AAA"), is(200 + 130));
 	}
-	
-	
-	@Test
-	public void whenCheckoutQuantityIsBelowOfferQuantityThenDiscountIsZero() {
-		Offer offer = VolumeOffer.create(Collections.singletonMap("A", 50), "A", 3, 130);
-		Basket basket = new CheckoutSolution.Basket(Collections.singletonMap("A", 2L), 0);
-		
-		assertThat(offer.discount(basket).total, is(0));
-	}
-
-
-	@Test
-	public void whenCheckoutQuantityIsExactlyDoubleTheOfferQuantityThenDiscountIsDoubled() {
-		Offer offer = VolumeOffer.create(Collections.singletonMap("A", 50), "A", 3, 130);
-		Basket basket = new CheckoutSolution.Basket(Collections.singletonMap("A", 6L), 0);
-		
-		assertThat(offer.discount(basket).total, is(130 * 2));
-	}
-
-
-	@Test
-	public void whenCheckoutQuantityIsMoreThanDoubleTheOfferQuantityThenDiscountIsDoubled() {
-		Offer offer = VolumeOffer.create(Collections.singletonMap("A", 50), "A", 3, 130);
-		Basket basket = new CheckoutSolution.Basket(Collections.singletonMap("A", 8L), 0);
-		
-		assertThat(offer.discount(basket).total, is(130 * 2));
-	}
 }
+
 
 
 

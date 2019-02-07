@@ -3,7 +3,6 @@ package befaster.solutions.CHK;
 import java.util.HashMap;
 import java.util.Map;
 
-import befaster.solutions.CHK.CheckoutSolution.Basket;
 
 public final class VolumeOffer implements Offer {
 	private int quantity;
@@ -33,3 +32,4 @@ public final class VolumeOffer implements Offer {
 		return new Basket(newContents, basket.total + (actual * price));
 	}
 }
+
