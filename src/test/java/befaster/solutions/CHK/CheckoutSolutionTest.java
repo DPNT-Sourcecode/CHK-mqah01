@@ -2,7 +2,6 @@ package befaster.solutions.CHK;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -87,7 +86,13 @@ public class CheckoutSolutionTest {
 	
 	@Test
 	public void totalPriceDuplicateSkus() {
-		assertThat(solution.checkout("A A A B C"), is(200));
+		assertThat(solution.checkout("A D A B C"), is(165));
+	}
+	
+	
+	@Test
+	public void totalPriceIncludingOffers() {
+		assertThat(solution.checkout("A A A B C"), is(200 - 40));
 	}
 	
 	
@@ -97,13 +102,22 @@ public class CheckoutSolutionTest {
 		
 		assertThat(offer.discount(2), is(0));
 	}
-	
-	
+
+
 	@Test
 	public void whenCheckoutQuantityIsExactlyDoubleTheOfferQuantityThenDiscountIsDoubled() {
 		Offer offer = Offer.create(Collections.singletonMap("A", 50), "A", 3, 130);
 		
 		assertThat(offer.discount(6), is(20 * 2));
 	}
+
+
+	@Test
+	public void whenCheckoutQuantityIsMoreThanDoubleTheOfferQuantityThenDiscountIsDoubled() {
+		Offer offer = Offer.create(Collections.singletonMap("A", 50), "A", 3, 130);
+		
+		assertThat(offer.discount(8), is(20 * 2));
+	}
 }
+
 
