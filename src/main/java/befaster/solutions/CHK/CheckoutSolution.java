@@ -69,7 +69,7 @@ public class CheckoutSolution {
 			
 			HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
 			newContents.put(sku, quantity % this.quantity);
-			
+			System.out.println(newContents);
 			return new Basket(newContents, basket.total -(actual * discount));
 		}
 	}
@@ -105,7 +105,7 @@ public class CheckoutSolution {
     	if(quantities == null || !areValidSkus(quantities.keySet())) {
     		return -1;
     	}
-    	Basket basket = new Basket(quantities);
+    	Basket basket = new Basket(quantities, 0);
     	
     	return totalPrice(basket);
     }
@@ -121,19 +121,15 @@ public class CheckoutSolution {
 
 	private Integer totalPrice(Basket basket) {
 		
+		for(Offer offer : offers) {
+			basket = offer.discount(basket);
+		}
+		
 		int sumTotal = basket.quantities.entrySet().stream()
 			.mapToInt(this::price)
 			.sum();
 		
-		int discount = priceOffers(basket);
-		
-		return sumTotal + discount;
-	}
-	
-	private int priceOffers(Basket basket) {
-		return offers.stream()
-			.mapToInt(o -> o.discount(basket))
-			.sum();
+		return sumTotal + basket.total;
 	}
 
 	private int price(Map.Entry<String, Long> quantity)
@@ -151,3 +147,4 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
