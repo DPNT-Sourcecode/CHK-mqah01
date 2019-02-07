@@ -28,6 +28,15 @@ import java.util.stream.Collectors;
 public class CheckoutSolution {
 	
 	
+	private static final Map<String, Integer> STOCK_PRICE = new HashMap<String, Integer>();
+	static {
+		STOCK_PRICE.put("A", 50);
+		STOCK_PRICE.put("B", 30);
+		STOCK_PRICE.put("C", 20);
+		STOCK_PRICE.put("D", 15);
+	}
+	
+	
     public Integer checkout(String skus) {
     	
     	Map<String, Long> quantities = quantities(skus);
@@ -41,5 +50,6 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
