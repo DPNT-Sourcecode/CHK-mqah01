@@ -4,6 +4,6 @@ import befaster.solutions.CHK.CheckoutSolution.Basket;
 
 public interface Offer {
 
-	int discount(Basket basket);
+	Basket discount(Basket basket);
 
 }
