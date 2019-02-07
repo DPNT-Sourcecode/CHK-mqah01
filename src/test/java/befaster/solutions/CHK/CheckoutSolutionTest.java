@@ -84,9 +84,9 @@ public class CheckoutSolutionTest {
 	
 	
 	@Test
-	public void checkoutOfEmptyStringIsValid() {
+	public void checkoutOfEmptyStringIsInvalid() {
 		
-		assertThat(solution.checkout(""), is(0));
+		assertThat(solution.checkout(""), is(-1));
 	}
 	
 	
@@ -166,4 +166,5 @@ public class CheckoutSolutionTest {
 		assertThat(solution.checkout("ABCDCBAABCABBAAA"), is(505));		
 	}
 }
+
 
