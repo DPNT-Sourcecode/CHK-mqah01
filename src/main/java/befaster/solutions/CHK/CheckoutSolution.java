@@ -68,9 +68,7 @@ public class CheckoutSolution {
 			int actual = quantity.intValue() / this.quantity;
 			
 			HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
-			System.out.println("pre: "+ newContents);
 			newContents.put(sku, quantity % this.quantity);
-			System.out.println("post: "+ newContents);
 			return new Basket(newContents, basket.total -(actual * discount));
 		}
 	}
@@ -129,7 +127,7 @@ public class CheckoutSolution {
 		int sumTotal = basket.quantities.entrySet().stream()
 			.mapToInt(this::price)
 			.sum();
-		
+		System.out.println("sumtot:" + sumTotal + ",  basket.tot: " + basket.total);
 		return sumTotal + basket.total;
 	}
 
@@ -148,5 +146,6 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
