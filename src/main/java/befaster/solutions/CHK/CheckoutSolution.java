@@ -83,6 +83,9 @@ public class CheckoutSolution {
 		stockPrice.put("Y", 10);
 		stockPrice.put("Z", 50);
 
+		// Order of offers is important, better value (for customer) offers must come
+		// first - as remaining offers see a mutated (reduced) view of the original basket
+		
 		offers.add(new DiscountOffer("A", 5, 200));
 		offers.add(new DiscountOffer("A", 3, 130));
 		
@@ -99,7 +102,15 @@ public class CheckoutSolution {
 		offers.add(new MultiOffer("N", 3, "M", 1));
 
 		offers.add(new DiscountOffer("P", 5, 200));
+		
+		offers.add(new MultiOffer("R", 3, "Q", 1));
 
+		offers.add(new DiscountOffer("Q", 3, 80));
+
+		offers.add(new MultiOffer("U", 3, "U", 1));
+
+		offers.add(new DiscountOffer("V", 3, 130));
+		offers.add(new DiscountOffer("V", 2, 90));
 	}
 	
 	public CheckoutSolution(Map<String, Integer> stockPrice, List<Offer> offers)
@@ -156,5 +167,6 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 

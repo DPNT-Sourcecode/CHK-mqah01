@@ -55,7 +55,7 @@ public class CheckoutSolutionTest {
 	@Test
 	public void invalidSkus() {
 		
-		assertThat(solution.areValidSkus(Collections.singleton("Z")), is(false));
+		assertThat(solution.areValidSkus(Collections.singleton("z")), is(false));
 	}
 	
 	
@@ -71,7 +71,7 @@ public class CheckoutSolutionTest {
 	@Test
 	public void checkoutOfInvalidSkus() {
 		
-		assertThat(solution.checkout("Z"), is(-1));
+		assertThat(solution.checkout("z"), is(-1));
 	}
 	
 	
@@ -154,4 +154,5 @@ public class CheckoutSolutionTest {
 		assertThat(solution.checkout("FFFFFF"), is(40));
 	}
 }
+
 
