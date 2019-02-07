@@ -118,7 +118,3 @@ public class CheckoutSolutionTest {
 		assertThat(solution.checkout("AAAAA" + "AAA"), is(200 + 130));
 	}
 }
-
-
-
-

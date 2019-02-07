@@ -31,5 +31,3 @@ public final class VolumeOffer implements Offer {
 		return new Basket(newContents, basket.total + (actual * price));
 	}
 }
-
-
