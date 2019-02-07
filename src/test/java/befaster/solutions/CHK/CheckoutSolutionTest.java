@@ -117,4 +117,23 @@ public class CheckoutSolutionTest {
 	public void totalPriceIncludingMultipleOffersOnSameSku() {
 		assertThat(solution.checkout("AAAAA" + "AAA"), is(200 + 130));
 	}
+
+
+	@Test
+	public void multiProductOfferNoFreeProductInBasket() {
+		assertThat(solution.checkout("EE"), is(80));
+	}
+
+
+	@Test
+	public void multiProductOfferSingle() {
+		assertThat(solution.checkout("EEB"), is(80));
+	}
+
+
+	@Test
+	public void multiProductOfferSingleDiscountedProductRemaining() {
+		assertThat(solution.checkout("EEBB"), is(110));
+	}
 }
+

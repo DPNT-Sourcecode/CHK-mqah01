@@ -38,12 +38,25 @@ public class CheckoutSolution {
 		stockPrice.put("B", 30);
 		stockPrice.put("C", 20);
 		stockPrice.put("D", 15);
+		stockPrice.put("E", 40);
 		
 		offers.add(VolumeOffer.create(stockPrice, "A", 5, 200));
 		offers.add(VolumeOffer.create(stockPrice, "A", 3, 130));
 		offers.add(VolumeOffer.create(stockPrice, "B", 2, 45));
 		
-		
+		offers.add(new Offer() {
+			@Override
+			public Basket discount(Basket basket) {
+				long quantity = basket.quantities.getOrDefault("E", 0L);
+				if(quantity < 2L || !basket.quantities.containsKey("B")) {
+					return basket;
+				}
+				int free = (int) (quantity / 2);
+				HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
+				newContents.put("B", Math.max(newContents.get("B") - free, 0)); 
+				return new Basket(newContents, basket.total);
+			}
+		});
 	}
 	
 	public CheckoutSolution(Map<String, Integer> stockPrice, List<Offer> offers)
@@ -100,3 +113,4 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
