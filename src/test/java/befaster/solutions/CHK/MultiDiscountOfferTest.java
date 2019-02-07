@@ -44,7 +44,6 @@ public class MultiDiscountOfferTest {
 		Basket discounted = offer.discount(basket);
 		
 		assertThat(discounted.total, is(10));
-		System.out.println(discounted.quantities);
 		assertThat(discounted.quantities, allOf(
 				hasEntry("Y", 1L),
 				hasEntry("Z", 1L),
@@ -88,7 +87,8 @@ public class MultiDiscountOfferTest {
 		assertThat(discounted.total, is(20));
 		assertThat(discounted.quantities, allOf(
 				is(aMapWithSize(1)),
-				hasEntry("Y", 1L)
+				hasEntry("Y", 2L)
 		));
 	}
 }
+

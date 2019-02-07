@@ -3,7 +3,6 @@ package befaster.solutions.CHK;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class MultiDiscountOffer implements Offer {
 
@@ -55,4 +54,5 @@ public class MultiDiscountOffer implements Offer {
 		return new Basket(newContents, subTotal);
 	}
 }
+
 
