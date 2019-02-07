@@ -38,11 +38,22 @@ public class CheckoutSolutionTest {
 	
 	@Test
 	public void validSkus() {
-		
-		
 		Set<String> validSkus = new HashSet<String>();
 		validSkus.add("A");
 		validSkus.add("B");
 		assertThat(solution.areValidSkus(validSkus), is(true));
 	}
+	
+	
+	@Test
+	public void totalPrice() {
+		assertThat(solution.checkout("A B C"), is(100));
+	}
+	
+	
+	@Test
+	public void totalPriceDuplicateSkus() {
+		assertThat(solution.checkout("A A A B C"), is(200));
+	}
 }
+

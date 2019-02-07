@@ -65,10 +65,9 @@ public class CheckoutSolution {
 
 	private Integer totalPrice(Map<String, Long> quantities) {
 		
-		quantities.entrySet().stream()
-			.mapToInt(this::price);
-		
-		return null;
+		return quantities.entrySet().stream()
+			.mapToInt(this::price)
+			.sum();
 	}
 	
 	private int price(Map.Entry<String, Long> quantity)
@@ -82,3 +81,4 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
