@@ -36,26 +36,30 @@ public class CheckoutSolution {
 		}
 	}
 	
-	public static class Offer {
+	public static class VolumeOffer implements Offer {
 		
-		public static final Offer NO_OFFER = new Offer("", 1, 0);
+		public static final Offer NO_OFFER = new VolumeOffer("", 1, 0);
 		
 		private int quantity;
 		private int discount;
 		private String sku;
 
-		public Offer(String sku, int quantity, int discount)
+		public VolumeOffer(String sku, int quantity, int discount)
 		{
 			this.sku = sku;
 			this.quantity = quantity;
 			this.discount = discount;
 		}
 		
-		public static Offer create(Map<String, Integer> stockPrice, String sku, int quantity, int price)
+		public static VolumeOffer create(Map<String, Integer> stockPrice, String sku, int quantity, int price)
 		{
-			return new Offer(sku, quantity, quantity * stockPrice.get(sku) - price);
+			return new VolumeOffer(sku, quantity, quantity * stockPrice.get(sku) - price);
 		}
 		
+		/* (non-Javadoc)
+		 * @see befaster.solutions.CHK.Offer#discount(befaster.solutions.CHK.CheckoutSolution.Basket)
+		 */
+		@Override
 		public int discount(Basket basket)
 		{
 			Long quantity = basket.quantities.get(sku);
@@ -69,21 +73,21 @@ public class CheckoutSolution {
 	
 	
 	final Map<String, Integer> stockPrice;
-	final List<Offer> offers;
+	final List<VolumeOffer> offers;
 
 	public CheckoutSolution()
 	{
-		this(new HashMap<String, Integer>(), new ArrayList<Offer>());
+		this(new HashMap<String, Integer>(), new ArrayList<VolumeOffer>());
 		stockPrice.put("A", 50);
 		stockPrice.put("B", 30);
 		stockPrice.put("C", 20);
 		stockPrice.put("D", 15);
 		
-		offers.add(Offer.create(stockPrice, "A", 3, 130));
-		offers.add(Offer.create(stockPrice, "B", 2, 45));
+		offers.add(VolumeOffer.create(stockPrice, "A", 3, 130));
+		offers.add(VolumeOffer.create(stockPrice, "B", 2, 45));
 	}
 	
-	public CheckoutSolution(Map<String, Integer> stockPrice, List<Offer> offers)
+	public CheckoutSolution(Map<String, Integer> stockPrice, List<VolumeOffer> offers)
 	{
 		this.stockPrice = stockPrice;
 		this.offers = offers;
@@ -142,6 +146,7 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
 
