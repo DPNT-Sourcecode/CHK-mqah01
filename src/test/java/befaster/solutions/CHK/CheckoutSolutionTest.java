@@ -52,14 +52,7 @@ public class CheckoutSolutionTest {
 	public void quantityForEmptyStringIsEmptyMap() {
 		
 		Map<String, Long> quantities = solution.quantities("");
-
-		assertThat(quantities, allOf(
-				aMapWithSize(4),
-				hasEntry("A", 4L),
-				hasEntry("B", 1L),
-				hasEntry("C", 1L),
-				hasEntry("D", 1L)
-		));
+		assertThat(quantities, is(anEmptyMap()));
 	}
 	
 	
@@ -147,6 +140,7 @@ public class CheckoutSolutionTest {
 		assertThat(offer.discount(8), is(20 * 2));
 	}
 }
+
 
 
 
