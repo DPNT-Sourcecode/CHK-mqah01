@@ -25,14 +25,36 @@ public class MultiDiscountOfferTest {
 		
 		assertThat(discounted.total, is(0));
 		assertThat(discounted.quantities, allOf(
-//				is(aMapWithSize(1)),
+				is(aMapWithSize(1)),
 				hasEntry("X", 2L)
 		));
 	}
 
 
 	@Test
-	public void discountAppliedInPriceOrder() {
+	public void discountAppliedAcrossSingleProductInPriceOrder() {
+		MultiDiscountOffer offer = new MultiDiscountOffer(Arrays.asList("X", "Z", "Y"), 3, 10);
+		
+		Map<String, Long> map = new HashMap<>();
+		map.put("X", 3L);
+		map.put("Y", 1L);
+		map.put("Z", 1L);
+		
+		Basket basket = new Basket(map, 0);
+		Basket discounted = offer.discount(basket);
+		
+		assertThat(discounted.total, is(10));
+		System.out.println(discounted.quantities);
+		assertThat(discounted.quantities, allOf(
+				hasEntry("Y", 1L),
+				hasEntry("Z", 1L),
+				is(aMapWithSize(2))
+		));
+	}
+
+
+	@Test
+	public void discountAppliedAcrossMultipleProductsInPriceOrder() {
 		MultiDiscountOffer offer = new MultiDiscountOffer(Arrays.asList("X", "Z", "Y"), 3, 10);
 		
 		Map<String, Long> map = new HashMap<>();
@@ -45,7 +67,7 @@ public class MultiDiscountOfferTest {
 		
 		assertThat(discounted.total, is(10));
 		assertThat(discounted.quantities, allOf(
-//				is(aMapWithSize(1)),
+				is(aMapWithSize(1)),
 				hasEntry("Y", 1L)
 		));
 	}
@@ -65,12 +87,8 @@ public class MultiDiscountOfferTest {
 		
 		assertThat(discounted.total, is(20));
 		assertThat(discounted.quantities, allOf(
-//				is(aMapWithSize(1)),
+				is(aMapWithSize(1)),
 				hasEntry("Y", 1L)
 		));
 	}
 }
-
-
-
-

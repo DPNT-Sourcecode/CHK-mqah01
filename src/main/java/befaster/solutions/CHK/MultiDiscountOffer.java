@@ -39,7 +39,12 @@ public class MultiDiscountOffer implements Offer {
 		for(String sku : skus) {
 			long basketQuantity = sub.getOrDefault(sku, 0L);
 			long remove = Math.min(basketQuantity, totalBasketQuantity);
-			sub.put(sku, basketQuantity - remove);
+			basketQuantity -= remove;
+			if(basketQuantity == 0L) {
+				sub.remove(sku);
+			} else {
+				sub.put(sku, basketQuantity);
+			}
 			totalBasketQuantity -= remove;
 		}
 		HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
@@ -47,6 +52,3 @@ public class MultiDiscountOffer implements Offer {
 		return new Basket(newContents, subTotal);
 	}
 }
-
-
-
