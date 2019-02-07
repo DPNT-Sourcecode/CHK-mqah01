@@ -148,5 +148,3 @@ public class CheckoutSolutionTest {
 		assertThat(solution.checkout("EEBEEB"), is(160));
 	}
 }
-
-

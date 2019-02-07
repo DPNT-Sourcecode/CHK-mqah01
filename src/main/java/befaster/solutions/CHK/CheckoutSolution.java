@@ -21,6 +21,7 @@ import java.util.function.Predicate;
 | C    | 20    |                        |
 | D    | 15    |                        |
 | E    | 40    | 2E get one B free      |
+| F    | 10    | 2F get one F free      |
 +------+-------+------------------------+
  */
 public class CheckoutSolution {
@@ -106,8 +107,3 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
-
-
-
-
-
