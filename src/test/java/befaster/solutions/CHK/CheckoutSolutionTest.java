@@ -15,7 +15,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import befaster.solutions.CHK.CheckoutSolution.Basket;
-import befaster.solutions.CHK.CheckoutSolution.VolumeOffer;
 
 public class CheckoutSolutionTest {
 
@@ -107,11 +106,17 @@ public class CheckoutSolutionTest {
 	public void totalPriceIncludingOneOffer() {
 		assertThat(solution.checkout("AAABC"), is(200 - 20));
 	}
-	
+
 
 	@Test
 	public void totalPriceIncludingOneOfferAppliedTwice() {
-		assertThat(solution.checkout("AAAAAAA"), is(350 - 40));
+		assertThat(solution.checkout("BBBB"), is(45 * 2));
+	}
+
+
+	@Test
+	public void totalPriceIncludingMultipleOffersOnSameSku() {
+		assertThat(solution.checkout("AAAAA" + "AAA"), is(200 + 130));
 	}
 	
 	
@@ -141,5 +146,6 @@ public class CheckoutSolutionTest {
 		assertThat(offer.discount(basket).total, is(130 * 2));
 	}
 }
+
 
 
