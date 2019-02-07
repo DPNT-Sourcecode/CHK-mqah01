@@ -30,9 +30,11 @@ public class CheckoutSolution {
 	public static class Basket {
 		
 		Map<String, Long> quantities;
+		int total;
 
-		public Basket(Map<String, Long> quantities) {
+		public Basket(Map<String, Long> quantities, int total) {
 			this.quantities = quantities;
+			this.total = total;
 		}
 	}
 	
@@ -57,14 +59,18 @@ public class CheckoutSolution {
 		}
 		
 		@Override
-		public int discount(Basket basket)
+		public Basket discount(Basket basket)
 		{
 			Long quantity = basket.quantities.get(sku);
 			if(quantity == null) {
-				return 0;
+				return basket;
 			}
 			int actual = quantity.intValue() / this.quantity;
-			return -(actual * discount);
+			
+			HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
+			newContents.put(sku, quantity % this.quantity);
+			
+			return new Basket(-(actual * discount);
 		}
 	}
 	
@@ -82,6 +88,8 @@ public class CheckoutSolution {
 		
 		offers.add(VolumeOffer.create(stockPrice, "A", 3, 130));
 		offers.add(VolumeOffer.create(stockPrice, "B", 2, 45));
+		
+		
 	}
 	
 	public CheckoutSolution(Map<String, Integer> stockPrice, List<VolumeOffer> offers)
@@ -143,6 +151,7 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
 
