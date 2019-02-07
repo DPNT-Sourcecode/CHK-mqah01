@@ -28,6 +28,8 @@ public class CheckoutSolutionTest {
 		stockPrice.put("D", 15);
 		
 		HashMap<String, Offer> offers = new HashMap<String, Offer>();
+		offers.put("A", Offer.create(stockPrice, "A", 3, 130));
+		offers.put("B", Offer.create(stockPrice, "B", 2, 45));
 		solution = new CheckoutSolution(stockPrice, offers);
 	}
 	
@@ -89,10 +91,16 @@ public class CheckoutSolutionTest {
 		assertThat(solution.checkout("A D A B C"), is(165));
 	}
 	
-	
+
 	@Test
-	public void totalPriceIncludingOffers() {
-		assertThat(solution.checkout("A A A B C"), is(200 - 40));
+	public void totalPriceIncludingOneOffer() {
+		assertThat(solution.checkout("A A A B C"), is(200 - 20));
+	}
+	
+
+	@Test
+	public void totalPriceIncludingOneOfferAppliedTwice() {
+		assertThat(solution.checkout("A A A A A A A"), is(350 - 40));
 	}
 	
 	
@@ -119,5 +127,6 @@ public class CheckoutSolutionTest {
 		assertThat(offer.discount(8), is(20 * 2));
 	}
 }
+
 
 
