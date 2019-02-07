@@ -1,6 +1,5 @@
 package befaster.solutions.CHK;
 
-import static java.util.Collections.emptyMap;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
@@ -75,7 +74,7 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
     	
     	Map<String, Long> quantities = quantities(skus);
-    	if(!areValidSkus(quantities.keySet())) {
+    	if(quantities == null || !areValidSkus(quantities.keySet())) {
     		return -1;
     	}
     	
@@ -109,11 +108,12 @@ public class CheckoutSolution {
 	}
 
 	Map<String, Long> quantities(String skus) {
-		return (skus == null) ? emptyMap() :
-			Arrays.stream(skus.split("[\\s,]+"))
+		return (skus == null) ? null :
+			Arrays.stream(skus.split(""))
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
 

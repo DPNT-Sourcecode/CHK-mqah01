@@ -38,7 +38,7 @@ public class CheckoutSolutionTest {
 	@Test
 	public void quantities() {
 		
-		Map<String, Long> quantities = solution.quantities("A B C D A A A");
+		Map<String, Long> quantities = solution.quantities("ABCDAAA");
 
 		assertThat(quantities, allOf(
 				aMapWithSize(4),
@@ -76,31 +76,31 @@ public class CheckoutSolutionTest {
 	@Test
 	public void checkoutOfNullSkus() {
 		
-		assertThat(solution.checkout(null), is(0));
+		assertThat(solution.checkout(null), is(-1));
 	}
 	
 	
 	@Test
 	public void totalPrice() {
-		assertThat(solution.checkout("A B C"), is(100));
+		assertThat(solution.checkout("ABC"), is(100));
 	}
 	
 	
 	@Test
 	public void totalPriceDuplicateSkus() {
-		assertThat(solution.checkout("A D A B C"), is(165));
+		assertThat(solution.checkout("ADABC"), is(165));
 	}
 	
 
 	@Test
 	public void totalPriceIncludingOneOffer() {
-		assertThat(solution.checkout("A A A B C"), is(200 - 20));
+		assertThat(solution.checkout("AAABC"), is(200 - 20));
 	}
 	
 
 	@Test
 	public void totalPriceIncludingOneOfferAppliedTwice() {
-		assertThat(solution.checkout("A A A A A A A"), is(350 - 40));
+		assertThat(solution.checkout("AAAAAAA"), is(350 - 40));
 	}
 	
 	
@@ -127,6 +127,7 @@ public class CheckoutSolutionTest {
 		assertThat(offer.discount(8), is(20 * 2));
 	}
 }
+
 
 
 
