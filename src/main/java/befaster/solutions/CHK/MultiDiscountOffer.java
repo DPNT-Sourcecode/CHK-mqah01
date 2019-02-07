@@ -1,6 +1,7 @@
 package befaster.solutions.CHK;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class MultiDiscountOffer implements Offer {
@@ -9,6 +10,11 @@ public class MultiDiscountOffer implements Offer {
 	int quantity;
 	int price;
 
+	/**
+	 * @param skus a sorted list of SKUs (price descending order)
+	 * @param quantity
+	 * @param price
+	 */
 	public MultiDiscountOffer(List<String> skus, int quantity, int price) {
 		this.skus = skus;
 		this.quantity = quantity;
@@ -27,10 +33,9 @@ public class MultiDiscountOffer implements Offer {
 		}
 		
 		int totalQuantity = sub.values().stream().mapToInt(Long::intValue).sum();
+		int subPrice = 0;
 		
-		int actual = quantity.intValue() / this.quantity;
-		HashMap<String, Long> newContents = new HashMap<>(basket.quantities);
-		newContents.put(sku, quantity % this.quantity);
-		return new Basket(newContents, basket.total + (actual * price));
+		return null;
 	}
 }
+
