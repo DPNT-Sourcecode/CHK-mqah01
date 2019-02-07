@@ -83,8 +83,6 @@ public class CheckoutSolution {
 		stockPrice.put("Y", 10);
 		stockPrice.put("Z", 50);
 
-
-		
 		offers.add(new DiscountOffer("A", 5, 200));
 		offers.add(new DiscountOffer("A", 3, 130));
 		
@@ -92,6 +90,15 @@ public class CheckoutSolution {
 		offers.add(new MultiOffer("F", 2, "F", 1));
 		
 		offers.add(new DiscountOffer("B", 2, 45));
+
+		offers.add(new DiscountOffer("H", 10, 80));
+		offers.add(new DiscountOffer("H", 5, 45));
+
+		offers.add(new DiscountOffer("K", 2, 150));
+		
+		offers.add(new MultiOffer("N", 3, "M", 1));
+
+		offers.add(new DiscountOffer("P", 5, 200));
 
 	}
 	
@@ -149,4 +156,5 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
