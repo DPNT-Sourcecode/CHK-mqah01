@@ -32,7 +32,7 @@ public class CheckoutSolution {
     	
     	Map<String, Long> quantities = quantities(skus);
     	
-    	
+    	return 0;
     }
 
 	Map<String, Long> quantities(String skus) {
@@ -41,4 +41,5 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
