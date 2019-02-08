@@ -250,5 +250,74 @@ public class CheckoutSolutionTest {
 				15  * 2   // M
 		));
 	}
+
+
+	@Test
+	public void multiDiscountOffer_fail147d() {
+		assertThat(solution.checkout(
+				"NOPQRSTUVWXYZ" +
+				"NOPQRSTUVWXYZ"), is(
+				40  * 2 + // N
+				10  * 2 + // O
+				50  * 2 + // P
+				30  * 2 + // Q
+				50  * 2 + // R
+				// S
+				// T
+				40  * 2 + // U
+				90 +     // V
+				20  * 2 + // W
+				// X
+				// Y
+				// Z
+				3 * 45 + 17
+		));
+	}
+
+
+	@Test
+	public void multiDiscountOffer_fail147e() {
+		assertThat(solution.checkout(
+				"STUVWXYZ" +
+				"STUVWXYZ"), is(
+				// S
+				// T
+				40  * 2 + // U
+				90 +     // V
+				20  * 2 + // W
+				// X
+				// Y
+				// Z
+				3 * 45 + 17
+		));
+	}
+
+
+	@Test
+	public void multiDiscountOffer_fail147f() {
+		assertThat(solution.checkout(
+				"UVW" +
+				"UVW"), is(
+				40  * 2 + // U
+				90 +     // V
+				20  * 2  // W
+		));
+	}
+
+
+	@Test
+	public void multiDiscountOffer_fail147g() {
+		assertThat(solution.checkout(
+				"STXYZ" +
+				"STXYZ"), is(
+				// S
+				// T
+				// X
+				// Y
+				// Z
+				3 * 45 + 17
+		));
+	}
 }
+
 
