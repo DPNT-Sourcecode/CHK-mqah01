@@ -158,19 +158,19 @@ public class CheckoutSolutionTest {
 
 
 	@Test
-	public void multiDiscountOffer_regression142() {
+	public void multiDiscountOffer_fail142() {
 		assertThat(solution.checkout("SSSZ"), is(65));
 	}
 
 
 	@Test
-	public void multiDiscountOffer_regression144() {
+	public void multiDiscountOffer_fail144() {
 		assertThat(solution.checkout("ZZZS"), is(65));
 	}
 
 
 	@Test
-	public void multiDiscountOffer_regression146() {
+	public void multiDiscountOffer_fail146() {
 		assertThat(solution.checkout("STXZ"), is(62));
 	}
 	
@@ -183,3 +183,4 @@ public class CheckoutSolutionTest {
 		assertThat(list.get(4), is(equalTo("X")));
 	}
 }
+
