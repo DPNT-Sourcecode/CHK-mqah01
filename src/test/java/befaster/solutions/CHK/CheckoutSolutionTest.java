@@ -186,8 +186,11 @@ public class CheckoutSolutionTest {
 
 	@Test
 	public void multiDiscountOffer_fail147() {
-		assertThat(solution.checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"), is(1602));
+		assertThat(solution.checkout(
+				"ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+				"ABCDEFGHIJKLMNOPQRSTUVWXYZ"), is(1602));
 	}
 }
+
 
 
