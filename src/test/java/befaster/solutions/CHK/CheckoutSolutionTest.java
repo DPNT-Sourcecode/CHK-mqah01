@@ -182,5 +182,12 @@ public class CheckoutSolutionTest {
 		assertThat(list.get(0), is(equalTo("Z")));
 		assertThat(list.get(4), is(equalTo("X")));
 	}
+
+
+	@Test
+	public void multiDiscountOffer_fail147() {
+		assertThat(solution.checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"), is(1602));
+	}
 }
+
 
