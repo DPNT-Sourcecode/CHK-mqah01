@@ -6,6 +6,7 @@ import static java.util.stream.Collectors.groupingBy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,7 +115,13 @@ public class CheckoutSolution {
 		offers.add(new DiscountOffer("V", 2, 90));
 		
 		List<String> multiDiscountProductList = Arrays.asList("S", "T", "X", "Y", "Z");
+		sortPriceDescending(multiDiscountProductList);
+		
 		offers.add(new MultiDiscountOffer(multiDiscountProductList, 3, 45));
+	}
+
+	void sortPriceDescending(List<String> multiDiscountProductList) {
+		Collections.sort(multiDiscountProductList, (a,b) -> stockPrice.get(b) - stockPrice.get(a));
 	}
 	
 	public CheckoutSolution(Map<String, Integer> stockPrice, List<Offer> offers)
@@ -171,6 +178,7 @@ public class CheckoutSolution {
 				.collect(groupingBy(identity(), counting()));
 	}
 }
+
 
 
 
