@@ -190,4 +190,65 @@ public class CheckoutSolutionTest {
 				"ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
 				"ABCDEFGHIJKLMNOPQRSTUVWXYZ"), is(1602));
 	}
+
+
+	@Test
+	public void multiDiscountOffer_fail147b() {
+		assertThat(solution.checkout(
+				"ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+				"ABCDEFGHIJKLMNOPQRSTUVWXYZ"), is(
+						
+				50 * 2 + // A
+				30 +     // B
+				20 * 2 + // C
+				15  * 2 + // D
+				40  * 2 + // E
+				10  * 2 + // F
+				20  * 2 + // G
+				10  * 2 + // H
+				35  * 2 + // I
+				60  * 2 + // J
+				120 +    // K
+				90  * 2 + // L
+				15  * 2 + // M
+				40  * 2 + // N
+				10  * 2 + // O
+				50  * 2 + // P
+				30  * 2 + // Q
+				50  * 2 + // R
+				// S
+				// T
+				40  * 2 + // U
+				90 +     // V
+				20  * 2 + // W
+				// X
+				// Y
+				// Z
+				3 * 45 + 17
+		));
+	}
+
+
+	@Test
+	public void multiDiscountOffer_fail147c() {
+		assertThat(solution.checkout(
+				"ABCDEFGHIJKLM" +
+				"ABCDEFGHIJKLM"), is(
+						
+				50 * 2 + // A
+				30 +     // B
+				20 * 2 + // C
+				15  * 2 + // D
+				40  * 2 + // E
+				10  * 2 + // F
+				20  * 2 + // G
+				10  * 2 + // H
+				35  * 2 + // I
+				60  * 2 + // J
+				120 +    // K
+				90  * 2 + // L
+				15  * 2   // M
+		));
+	}
 }
+
