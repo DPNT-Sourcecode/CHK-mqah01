@@ -54,5 +54,3 @@ public class MultiDiscountOffer implements Offer {
 		return new Basket(newContents, subTotal);
 	}
 }
-
-
