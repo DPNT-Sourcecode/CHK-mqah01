@@ -191,6 +191,3 @@ public class CheckoutSolutionTest {
 				"ABCDEFGHIJKLMNOPQRSTUVWXYZ"), is(1602));
 	}
 }
-
-
-
