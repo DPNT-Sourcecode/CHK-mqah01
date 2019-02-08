@@ -184,6 +184,11 @@ public class CheckoutSolutionTest {
 	}
 
 
+	/**
+	 * This revealed a gap in testing: there were no unit tests to cover a MultiDiscountOffer
+	 * where the Basket already had a non-zero total.
+	 * Along with refactoring tests to cases, this case would be included
+	 */
 	@Test
 	public void multiDiscountOffer_fail147() {
 		assertThat(solution.checkout(
@@ -319,5 +324,6 @@ public class CheckoutSolutionTest {
 		));
 	}
 }
+
 
 
