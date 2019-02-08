@@ -1,13 +1,15 @@
 package befaster.solutions.CHK;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.aMapWithSize;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.hasEntry;
 import static org.hamcrest.Matchers.is;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -159,5 +161,15 @@ public class CheckoutSolutionTest {
 	public void multiDiscountOffer() {
 		assertThat(solution.checkout("SSSZ"), is(65));
 	}
+	
+	
+	@Test
+	public void sortsPriceDescending() {
+		List<String> list = Arrays.asList("S", "T", "X", "Y", "Z");
+		solution.sortPriceDescending(list);
+		assertThat(list.get(0), is(equalTo("Z")));
+		assertThat(list.get(4), is(equalTo("X")));
+	}
 }
+
 
