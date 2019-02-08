@@ -51,6 +51,7 @@ public class MultiDiscountOffer implements Offer {
 				it.remove();
 			}
 		}
-		return new Basket(newContents, subTotal);
+		return new Basket(newContents, basket.total + subTotal);
 	}
 }
+
